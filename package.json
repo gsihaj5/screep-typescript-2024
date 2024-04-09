@@ -1,0 +1,28 @@
+{
+  "devDependencies": {
+    "typescript": "^5.4.4"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/lodash": "^4.17.0",
+    "@types/screeps": "^3.3.8",
+    "lodash": "^4.17.21",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-screeps": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "source-map": "^0.7.4"
+  },
+  "scripts": {
+    "lint": "eslint \"src/**/*.ts\"",
+    "build": "rollup -c",
+    "push-main": "rollup -c --environment DEST:main",
+    "push-pserver": "rollup -c --environment DEST:pserver",
+    "push-season": "rollup -c --environment DEST:season",
+    "push-sim": "rollup -c --environment DEST:sim",
+    "watch-main": "rollup -cw --environment DEST:main",
+    "watch-pserver": "rollup -cw --environment DEST:pserver",
+    "watch-season": "rollup -cw --environment DEST:season",
+    "watch-sim": "rollup -cw --environment DEST:sim"
+  }
+}
