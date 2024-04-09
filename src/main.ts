@@ -1,5 +1,12 @@
-const world = 'world';
 
-export function hello(who: string = world): string {
-  return `Hello ${who}! `;
+export function loop() {
+  console.log(`Current game tick is ${Game.time}`);
+
+  // Automatically delete memory of missing creeps
+  for (const name in Memory.creeps) {
+    if (!(name in Game.creeps)) {
+      delete Memory.creeps[name];
+    }
+  }
+
 }
