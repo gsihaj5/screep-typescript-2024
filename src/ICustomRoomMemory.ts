@@ -1,4 +1,4 @@
-interface roomSourceAvaliability {
+interface RoomSourceAvaliability {
   maxSpot: number
   availableSpot: number
 }
@@ -6,6 +6,6 @@ interface roomSourceAvaliability {
 interface ICustomRoomMemory {
   allSourcesIdentified: boolean
   sources: {
-    [sourceId: string]: roomSourceAvaliability
+    [sourceId: string]: RoomSourceAvaliability
   }
 }
