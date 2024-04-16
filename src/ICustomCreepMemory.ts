@@ -1,0 +1,4 @@
+
+interface ICustomCreepMemory {
+  role: string
+}
