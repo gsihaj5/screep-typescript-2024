@@ -19,8 +19,10 @@ export default class Harvester implements ICreepRole {
 export function spawnHarvester(
   spawner: StructureSpawn,
   name: string,
-  roomMemory: ICustomRoomMemory
+  room: Room
 ) {
+  console.log("spawning harvester")
+  const roomMemory = room.memory as ICustomRoomMemory
   for (const sourceId in roomMemory.sources) {
     const availability = roomMemory.sources[sourceId];
     if (!availability) continue
@@ -29,7 +31,8 @@ export function spawnHarvester(
       spawner.spawnCreep(BodyGenerator.harvester(), name, {
         memory: {
           role: "harvester",
-          sourceId: sourceId
+          sourceId: sourceId,
+          roomId: room.name
         }
       })
       availability.availableSpot--;

@@ -8,7 +8,16 @@ export default function manageCreep() {
 
 function clearCreepMemory() {
   for (const name in Memory.creeps) {
+
     if (!(name in Game.creeps)) {
+      const creepMemory = Memory.creeps[name] as ICustomCreepMemory
+      if (creepMemory.roomId) {
+        const roomMemory = Game.rooms[creepMemory.roomId].memory as ICustomRoomMemory
+        if (creepMemory.sourceId) {
+          roomMemory.sources[creepMemory.sourceId].availableSpot++
+        }
+      }
+
       delete Memory.creeps[name];
     }
   }
