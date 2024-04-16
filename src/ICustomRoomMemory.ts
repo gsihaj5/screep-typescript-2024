@@ -1,4 +1,5 @@
 interface roomSourceAvaliability {
+  maxSpot: number
   availableSpot: number
 }
 

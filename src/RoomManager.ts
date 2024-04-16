@@ -34,7 +34,10 @@ function identifySources(sources: Source[], memory: ICustomRoomMemory) {
     })
 
     console.log("Total Available Slot", availableSlot)
-    memory.sources[source.id] = { availableSpot: availableSlot }
+    memory.sources[source.id] = {
+      availableSpot: availableSlot,
+      maxSpot: availableSlot
+    }
   })
 }
 function getSuroundingPosition(position: RoomPosition): RoomPosition[] {
