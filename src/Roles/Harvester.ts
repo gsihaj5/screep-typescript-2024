@@ -3,24 +3,27 @@ import ICreepRole from "./ICreepRole"
 
 export default class Harvester implements ICreepRole {
   private memory: ICustomCreepMemory
+  private source?: Source
   constructor(
     private creep: Creep
   ) {
     this.memory = creep.memory as ICustomCreepMemory
+    if (!this.memory.sourceId) return
+    this.source = Game.getObjectById(this.memory.sourceId) as Source
   }
 
   run() {
-    if (!this.memory.serializedPath)
-      this.findPathToResource()
-    else
-      this.creep.moveByPath(this.memory.serializedPath)
+    if (!this.source) return
+
+    if (this.creep.harvest(this.source) == ERR_NOT_IN_RANGE)
+      if (!this.memory.serializedPath) this.findPathToResource()
+      else this.creep.moveByPath(this.memory.serializedPath)
 
   }
 
   findPathToResource() {
-    if (!this.memory.sourceId) return
-    const source = Game.getObjectById(this.memory.sourceId) as Source
-    const path = this.creep.pos.findPathTo(source)
+    if (!this.source) return
+    const path = this.creep.pos.findPathTo(this.source)
     this.memory.serializedPath = Room.serializePath(path)
     console.log(this.memory)
   }
