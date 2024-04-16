@@ -2,13 +2,27 @@ import BodyGenerator from "../BodyGenerator"
 import ICreepRole from "./ICreepRole"
 
 export default class Harvester implements ICreepRole {
+  private memory: ICustomCreepMemory
   constructor(
     private creep: Creep
-  ) { }
+  ) {
+    this.memory = creep.memory as ICustomCreepMemory
+  }
 
   run() {
-    console.log("Harvester running")
+    if (!this.memory.serializedPath)
+      this.findPathToResource()
+    else
+      this.creep.moveByPath(this.memory.serializedPath)
 
+  }
+
+  findPathToResource() {
+    if (!this.memory.sourceId) return
+    const source = Game.getObjectById(this.memory.sourceId) as Source
+    const path = this.creep.pos.findPathTo(source)
+    this.memory.serializedPath = Room.serializePath(path)
+    console.log(this.memory)
   }
 
   harvest() {
