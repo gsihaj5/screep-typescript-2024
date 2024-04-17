@@ -1,4 +1,5 @@
 import Harvester from "./Roles/Harvester";
+import Hauler from "./Roles/Hauler";
 
 export default function manageCreep() {
   console.log("Managing Creeps")
@@ -16,6 +17,9 @@ function clearCreepMemory() {
       switch (role) {
         case "harvester":
           clearHarvesterMemory(creepMemory)
+          break;
+        case "hauler":
+          clearHaulerMemory(creepMemory)
           break;
       }
 
@@ -53,7 +57,7 @@ function runCreepByRole(role: string, creep: Creep) {
   switch (role) {
     case "harvester": (new Harvester(creep)).run();
       break;
-    case "hauler": (new Harvester(creep)).run();
+    case "hauler": (new Hauler(creep)).run();
       break;
   }
 }
