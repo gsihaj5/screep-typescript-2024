@@ -18,18 +18,16 @@ export default class Hauler implements ICreepRole {
 
   run() {
     if (this.memory.isPickuping == undefined) this.memory.isPickuping = true
-    if (this.memory.changeTarget == undefined) this.memory.changeTarget = true;
 
-
-    if (this.memory.changeTarget) this.changeTarget()
-
-    if (this.creep.carry.getFreeCapacity() == 0 && this.memory.isPickuping) {
+    if (this.full()) {
       this.memory.isPickuping = false
       this.findStorage()
     }
-    if (this.creep.carry.getUsedCapacity() == 0 && !this.memory.isPickuping) {
-      this.memory.isPickuping = true
-      this.memory.changeTarget = true
+    if (this.empty()) {
+      this.memory.serializedPath = undefined
+      this.findDroppedResource()
+      if (this.memory.serializedPath)
+        this.memory.isPickuping = true
     }
 
     if (this.memory.isPickuping) {
@@ -46,9 +44,22 @@ export default class Hauler implements ICreepRole {
 
   }
 
-  changeTarget() {
+  empty() {
+    return this.creep.carry.getUsedCapacity() == 0 && !this.memory.isPickuping
+  }
+
+  full() {
+    return this.creep.carry.getFreeCapacity() == 0 && this.memory.isPickuping
+  }
+
+  findDroppedResource() {
     const resources: Resource<RESOURCE_ENERGY>[] = this.creep.room.find(FIND_DROPPED_RESOURCES);
     const targetResource = resources[0]
+
+    if (!targetResource.id) {
+      console.log("Resource Not Found !")
+      return
+    }
 
     this.memory.droppedResourceId = targetResource.id
     const path = this.creep.pos.findPathTo(targetResource)
