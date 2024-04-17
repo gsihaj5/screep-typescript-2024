@@ -2,12 +2,12 @@ import BodyGenerator from "../BodyGenerator"
 import ICreepRole from "./ICreepRole"
 
 export default class Harvester implements ICreepRole {
-  private memory: ICustomCreepMemory
+  private memory: ICreepHarvesterMemory
   private source?: Source
   constructor(
     private creep: Creep
   ) {
-    this.memory = creep.memory as ICustomCreepMemory
+    this.memory = creep.memory as ICreepHarvesterMemory
     if (!this.memory.sourceId) return
     this.source = Game.getObjectById(this.memory.sourceId) as Source
   }

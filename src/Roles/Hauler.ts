@@ -1,7 +1,7 @@
 import BodyGenerator from "../BodyGenerator"
 import ICreepRole from "./ICreepRole"
 
-export default class Harvester implements ICreepRole {
+export default class Hauler implements ICreepRole {
   private memory: ICustomCreepMemory
   constructor(
     private creep: Creep
@@ -10,17 +10,18 @@ export default class Harvester implements ICreepRole {
   }
 
   run() {
+    const resources: Resource<RESOURCE_ENERGY>[] = this.creep.room.find(FIND_DROPPED_RESOURCES);
 
-
+    //go take 
+    //find storage path 
+    //bring back to storage
+    //repeat
   }
 
   findPathToResource() {
-
+    return
   }
 
-  harvest() {
-
-  }
 }
 
 export function spawnHauler(
