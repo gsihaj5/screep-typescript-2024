@@ -1,6 +1,7 @@
 interface RoomSourceAvaliability {
   maxSpot: number
   availableSpot: number
+  haulerSpot: number
 }
 
 interface ICustomRoomMemory {

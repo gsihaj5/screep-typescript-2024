@@ -19,10 +19,10 @@
     "lint": "eslint \"src/**/*.ts\"",
     "build": "rollup -c",
     "push-main": "rollup -c --environment DEST:main --bundleConfigAsCjs",
-    "push-pserver": "rollup -c --environment DEST:pserver",
+    "push-pserver": "rollup -c --environment DEST:pserver --bundleConfigAsCjs",
     "push-season": "rollup -c --environment DEST:season",
     "push-sim": "rollup -c --environment DEST:sim",
-    "watch-main": "rollup -cw --environment DEST:main",
+    "watch-main": "rollup -cw --environment DEST:main --bundleConfigAsCjs",
     "watch-pserver": "rollup -cw --environment DEST:pserver",
     "watch-season": "rollup -cw --environment DEST:season",
     "watch-sim": "rollup -cw --environment DEST:sim"

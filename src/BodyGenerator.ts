@@ -4,4 +4,10 @@ export default class BodyGenerator {
 
     return [WORK, MOVE]
   }
+
+  static hauler(): BodyPartConstant[] {
+
+    return [MOVE, MOVE, CARRY, CARRY]
+
+  }
 }

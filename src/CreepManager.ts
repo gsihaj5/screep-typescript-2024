@@ -35,6 +35,8 @@ function runCreepByRole(role: string, creep: Creep) {
   switch (role) {
     case "harvester": (new Harvester(creep)).run();
       break;
+    case "hauler": (new Harvester(creep)).run();
+      break;
   }
 }
 

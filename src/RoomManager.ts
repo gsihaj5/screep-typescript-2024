@@ -36,7 +36,8 @@ function identifySources(sources: Source[], memory: ICustomRoomMemory) {
     console.log("Total Available Slot", availableSlot)
     memory.sources[source.id] = {
       availableSpot: availableSlot,
-      maxSpot: availableSlot
+      maxSpot: availableSlot,
+      haulerSpot: Math.ceil(availableSlot / 2)
     }
   })
 }

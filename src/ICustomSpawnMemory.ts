@@ -1,0 +1,4 @@
+interface ICustomSpawnMemory {
+  roleTurn: string
+  
+}
